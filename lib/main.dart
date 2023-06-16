@@ -1,3 +1,7 @@
+import 'package:chat_app/Screens/calls.dart';
+import 'package:chat_app/Screens/chats.dart';
+import 'package:chat_app/Screens/people.dart';
+import 'package:chat_app/Screens/settings.dart';
 import 'package:chat_app/global.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:chat_app/Models/chats.dart';
@@ -46,7 +50,12 @@ class _MyHomePageState extends State<MyHomePage> {
     await WhatsApp.People();
     await WhatsApp.Calls();
   }
-  var screen = [Text('Chat'), Text('Calls'),Text('People'), Text('Setting')];
+  var screen = [
+    const ChatsScreen(),
+    const CallsScreen(),
+    const PeopleScreen(),
+    const SettingsScreen()
+];
 
   @override
   CupertinoPageScaffold build(BuildContext context)  {

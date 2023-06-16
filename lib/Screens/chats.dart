@@ -1,25 +1,25 @@
 import 'package:chat_app/Components/search_bar.dart';
-import 'package:chat_app/Models/people.dart';
+import 'package:chat_app/Models/chats.dart';
 import 'package:chat_app/global.dart';
 import 'package:flutter/cupertino.dart';
 
-class PeopleScreen extends StatelessWidget {
-  const PeopleScreen({super.key});
+class ChatsScreen extends StatelessWidget {
+  const ChatsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<PeopleModel>>(
-        future: WhatsApp.People(),
+    return FutureBuilder<List<ChatsModel>>(
+        future: WhatsApp.Chats(),
         builder: ((context, snapshot) {
           return CustomScrollView(slivers: [
             const CupertinoSliverNavigationBar(
-              largeTitle: Text('People'),
+              largeTitle: Text('Chats'),
             ),
-            SearchBar(onChanged: () {}, onSummited: () {} ,),
+             SearchBar(onChanged: () {}, onSummited: () {} ,),
             snapshot.hasData
                 ? SliverList(
                 delegate: SliverChildListDelegate(
-                  snapshot.data!.map((e) => Text(e.firstname + e.lastname)).toList(),
+                  snapshot.data!.map((e) => Text(e.name)).toList(),
                 ))
                 : (snapshot.connectionState == ConnectionState.waiting)
                 ? const SliverFillRemaining(
@@ -31,3 +31,4 @@ class PeopleScreen extends StatelessWidget {
     );
   }
 }
+

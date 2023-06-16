@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:chat_app/Models/calls.dart';
 import 'package:chat_app/Models/chats.dart';
 import 'package:chat_app/Models/me.dart';
+import 'package:chat_app/Models/message.dart';
 import 'package:chat_app/Models/people.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart';
@@ -43,6 +44,15 @@ class WhatsApp{
     if (response.statusCode == 200){
       return (jsonDecode(response.body) as List)
           .map((e) => CallsModel.fromJson(e))
+          .toList();
+    }
+    throw Exception(response.reasonPhrase);
+  }
+  static Future<List<MessageModel>> Messages() async {
+    Response response = await get(Uri.parse('$WHATSAPP/messages'));
+    if (response.statusCode == 200){
+      return (jsonDecode(response.body) as List)
+          .map((e) => MessageModel.fromJson(e))
           .toList();
     }
     throw Exception(response.reasonPhrase);

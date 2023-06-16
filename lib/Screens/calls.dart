@@ -1,3 +1,4 @@
+import 'package:chat_app/Components/search_bar.dart';
 import 'package:chat_app/Models/calls.dart';
 import 'package:chat_app/global.dart';
 import 'package:flutter/cupertino.dart';
@@ -14,6 +15,7 @@ class CallsScreen extends StatelessWidget {
           const CupertinoSliverNavigationBar(
             largeTitle: Text('Calls'),
           ),
+          SearchBar(onChanged: () {}, onSummited: () {} ,),
           snapshot.hasData
           ? SliverList(
           delegate: SliverChildListDelegate(
