@@ -43,8 +43,10 @@ class _MyHomePageState extends State<MyHomePage> {
   void getMe () async{
     var me = await WhatsApp.Me();
     await WhatsApp.Chats;
-    print(me.toString());
+    await WhatsApp.People();
+    await WhatsApp.Calls();
   }
+  var screen = [Text('Chat'), Text('Calls'),Text('People'), Text('Setting')];
 
   @override
   CupertinoPageScaffold build(BuildContext context)  {
@@ -67,11 +69,9 @@ class _MyHomePageState extends State<MyHomePage> {
               icon: Icon(CupertinoIcons.settings_solid),
             ),
          ],), tabBuilder: (BuildContext context, int index) {
-         return  Container(
-           child: Center(
-             child: Text(index.toString()),
-             ),
-            );
+         return  Center(
+           child: screen[index],
+           );
            },
          ));
   }

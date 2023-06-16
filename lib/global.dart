@@ -1,7 +1,9 @@
 import 'dart:convert';
 
+import 'package:chat_app/Models/calls.dart';
 import 'package:chat_app/Models/chats.dart';
 import 'package:chat_app/Models/me.dart';
+import 'package:chat_app/Models/people.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart';
  const _url = 'https://faker-node-app.herokuapp.com';
@@ -23,6 +25,24 @@ class WhatsApp{
     if (response.statusCode == 200){
       return (jsonDecode(response.body) as List)
           .map((e) => ChatsModel.fromJson(e))
+          .toList();
+    }
+    throw Exception(response.reasonPhrase);
+  }
+  static Future<List<PeopleModel>> People() async {
+    Response response = await get(Uri.parse('$WHATSAPP/people'));
+    if (response.statusCode == 200){
+      return (jsonDecode(response.body) as List)
+          .map((e) => PeopleModel.fromJson(e))
+          .toList();
+    }
+    throw Exception(response.reasonPhrase);
+  }
+  static Future<List<CallsModel>> Calls() async {
+    Response response = await get(Uri.parse('$WHATSAPP/calls'));
+    if (response.statusCode == 200){
+      return (jsonDecode(response.body) as List)
+          .map((e) => CallsModel.fromJson(e))
           .toList();
     }
     throw Exception(response.reasonPhrase);

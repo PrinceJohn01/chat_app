@@ -32,7 +32,7 @@ class PeopleModel{
       count: data ['count'],
       story: data ['story'],
       image: data ['image'],
-      avatar: avatar,
-      status: status,
-      stories: stories)
+      avatar: data ['avatar'],
+      status: data ['status'],
+      stories: data ['stories']);
 }
