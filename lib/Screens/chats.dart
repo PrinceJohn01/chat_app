@@ -1,3 +1,4 @@
+import 'package:chat_app/Components/my_list_tile.dart';
 import 'package:chat_app/Components/search_bar.dart';
 import 'package:chat_app/Models/chats.dart';
 import 'package:chat_app/global.dart';
@@ -19,7 +20,7 @@ class ChatsScreen extends StatelessWidget {
             snapshot.hasData
                 ? SliverList(
                 delegate: SliverChildListDelegate(
-                  snapshot.data!.map((e) => Text(e.name)).toList(),
+                  snapshot.data!.map((e) => MyListTile()).toList(),
                 ))
                 : (snapshot.connectionState == ConnectionState.waiting)
                 ? const SliverFillRemaining(
