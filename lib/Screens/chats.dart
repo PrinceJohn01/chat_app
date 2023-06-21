@@ -20,7 +20,18 @@ class ChatsScreen extends StatelessWidget {
             snapshot.hasData
                 ? SliverList(
                 delegate: SliverChildListDelegate(
-                  snapshot.data!.map((e) => MyListTile()).toList(),
+                  snapshot.data!.map((e) => MyListTile(
+                    count: e.count,
+                    date: e.date,
+                    icon: CupertinoIcons.chevron_compact_right,
+                    image: e.avatar,
+                    key: UniqueKey(),
+                    title: e.name,
+                    subtitle: e.msg,
+                    onTap:() => {},
+                    onImageTap: () => {},
+                    border: e.story,
+                  )).toList(),
                 ))
                 : (snapshot.connectionState == ConnectionState.waiting)
                 ? const SliverFillRemaining(
