@@ -38,36 +38,39 @@ class MyListTile extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-            children: [
-              image!= null?
-              GestureDetector(
-                onTap: () => onImageTap(),
-                child: CircleAvatar(
-                  radius: 30,
-                  backgroundColor: const Color(0xFFC10000),
+            Expanded(
+              child: Row(
+              children: [
+                image!= null?
+                GestureDetector(
+                  onTap: () => onImageTap(),
                   child: CircleAvatar(
-                    radius: border? 26:30,
-                    backgroundImage: NetworkImage(image),
+                    radius: 30,
+                    backgroundColor: const Color(0xFFC10000),
+                    child: CircleAvatar(
+                      radius: border? 26:30,
+                      backgroundImage: NetworkImage(image),
+              ),
+                  ),
+                ):
+                    Container(),
+                 Padding(
+                  padding:  const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children:[
+                        title!= null?
+                    Text(title, style: const TextStyle(fontSize: 17),)
+                        :Container(),
+                    subtitle!=null?
+                    Text(subtitle, style: const TextStyle(fontSize: 11))
+                    :Container(),],
+                  ),
+                )
+              ]
+          ),
             ),
-                ),
-              ):
-                  Container(),
-               Padding(
-                padding:  const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children:[
-                      title!= null?
-                  Text(title, style: const TextStyle(fontSize: 17),)
-                      :Container(),
-                  subtitle!=null?
-                  Text(subtitle, style: const TextStyle(fontSize: 11))
-                  :Container(),],
-                ),
-              )
-            ]
-          ), Row( children: [
+            Row( children: [
             Column(children: [
               date!=null?
                Text(date, style: const TextStyle(fontSize: 12, color: Color(0xFFC10000)),
